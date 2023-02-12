@@ -1,0 +1,20 @@
+<p-toast position="top-right"></p-toast>
+<p-card>
+        <div class="p-fluid col-12">
+            <h4>Palindromos</h4>
+            <br>
+            <div class="field">
+                <label htmlFor="Monto Incial">Texto</label>
+                <input id="disabled-input" type="text" pInputText [(ngModel)]="texto" />
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <button (click)="loadBuscar()" pButton pRipple type="button" label="Buscar" icon="pi pi-save" class="mr-2 mb-2"></button>
+        </div>
+        <hr>
+        <div class="p-d-flex p-ai-center" *ngFor="let item of listado">
+            <br>
+            <p-chip label="{{item}}" icon="pi pi-check" styleClass="p-mr2"></p-chip>
+        </div>
+
+</p-card>

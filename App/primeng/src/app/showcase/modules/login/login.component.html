@@ -1,0 +1,42 @@
+<div class="login-body" >
+    <div class="login-panel p-fluid" style="box-shadow: 5px 5px 5px #bdb9b9af; border-radius: 2.5%;">
+        <form (submit) = "login()" [formGroup]="formLogin"  class="grid grid-nogutter">
+            <div class="col-12">  
+                
+                <div *ngIf="logo != 'Logo'">
+                    <img src="{{url}}{{logo}}" style="max-height: 15rem; margin-left: auto; margin-right: auto; margin-top: 10px; display: block;">  
+                </div>
+                <div *ngIf="logo == 'Logo'">
+                    <img src="assets/layout/images/default_logo.png" style="margin-left: auto; margin-right: auto; display: block;">  
+                </div>
+                
+            </div>
+
+            <div style="margin-left: auto; margin-right: auto; display: block; padding-right: 40px;">
+                <h2>Bienvenido</h2>
+            </div>
+            
+            <div class="col-12" style="margin-bottom: 10px;">
+                <label for="username">Nombre de usuario</label>
+                <div class="input-wrapper">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                        <input formControlName="usuario" type="text" autocomplete="off" placeholder="usuario@codigoempresa" pInputText>
+                    </div>
+                </div>
+                <br>
+                <label for="password">Contraseña</label>
+                <div class="input-wrapper">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                        <input formControlName="password" type="password" autocomplete="off" placeholder="***************" pInputText>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 button-container">
+                <p-button type="submit">Iniciar Sesión</p-button>
+            </div>
+        </form>
+    </div>
+</div>

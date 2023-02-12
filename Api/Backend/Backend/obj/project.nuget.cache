@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "og/jTC27CrLNYsaIplxHqx/RQm+lH3Xb5aEY/HUVSEZf0vtcJ2w2LHV+yftS+T7iaRC4qgIK3LqkesyKW4OqPA==",
+  "dgSpecHash": "OSxn51UanSui81XaAOrGZk3ed63Z/6VN9xOVLZtv67d8e6p64UqKgZG5wqGPKPnipKGn6DlXmGHuvvgJUP5/NQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\prueba_tecnica\\Practica-C-y-Angular\\Api\\Backend\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\prueba_tecnica\\Practica-Donet-Angular\\Api\\Backend\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\mailkit\\3.5.0\\mailkit.3.5.0.nupkg.sha512",

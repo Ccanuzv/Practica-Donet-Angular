@@ -1,0 +1,125 @@
+<div class="grid">
+    <div class="col-12">
+        <div >
+            <div class="card">
+                <p-toolbar styleClass="mb-4">
+                    <ng-template pTemplate="left">
+                        <div class="my-2">
+                            <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-success mr-2" (click)="nuevoEmpleado()"></button>
+                        </div>
+                    </ng-template>
+                </p-toolbar>
+
+                <p-table #dt
+                [value]="empleados"
+                responsiveLayout="scroll"
+                [rows]="10"
+                [totalRecords] = "totalPages"
+                [lazy]="true" 
+                (onLazyLoad)="loadEmpleado($event)"
+                [(first)]="numeroPagina"
+                [paginator]="true"
+                dataKey="id">
+                    <ng-template pTemplate="caption">
+                        <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                            <h5 class="m-0">Listado de Empleados</h5>
+                        </div>
+                    </ng-template>
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon></th>
+                            <th pSortableColumn="dpi">DPI</th>
+                            <th pSortableColumn="cantidad">Hijos</th>
+                            <th pSortableColumn="dpi">Salario</th>
+                            <th pSortableColumn="dpi">Bono Decreto</th>
+                            <th pSortableColumn="dpi">Fecha</th>
+                            <th pSortableColumn="dpi">IGSS</th>
+                            <th pSortableColumn="dpi">IRTRA</th>
+                            <th pSortableColumn="dpi">Bono Paternal</th>
+                            <th pSortableColumn="dpi">Salario Total</th>
+                            <th pSortableColumn="dpi">Salario Liquido</th>
+                            <!-- <th>Opciones</th> -->
+                        </tr>
+                        <tr>
+                            <th>
+                                <input pInputText type="text" [(ngModel)]="Nombre" (keyup.enter)="filter()" placeholder="Nombre" class="p-column-filter">
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <!-- <th></th> -->
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-empleado>
+                        <tr>
+                            <td>
+                                <span class="p-column-title">Nombre</span>
+                                {{empleado.nombre}}
+                            </td>
+                             <td>
+                                <span class="p-column-title">DPI</span>
+                                {{empleado.dpi}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Cantidad</span>
+                                {{empleado.cantidadHijos}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">salario</span>
+                                {{empleado.salario}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">bono decreto</span>
+                                {{empleado.bonoDecreto}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">fecha</span>
+                                {{empleado.fechaCreacion | date:'dd-MM-yyyy'}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">igss</span>
+                                {{empleado.igss}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">irtra</span>
+                                {{empleado.irtra}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">bonoPaternidad</span>
+                                {{empleado.bonoPaternidad}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">salarioTotal</span>
+                                {{empleado.salarioTotal}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">salarioLiquido</span>
+                                {{empleado.salarioLiquido}}
+                            </td>
+                            <!-- <td>
+                                <div class="flex">
+                                    <button pButton pRipple icon="pi pi-pencil" [disabled]="(modificarEstablecimiento == false)" class="p-button-rounded p-button-success mr-2" (click)="nuevoMesPago(mesesPago)"></button>
+                                </div>
+                            </td> -->
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+        <p-dialog [(visible)]="diag_empleado" [style]="{width: '500px'}" header="{{title}}" [modal]="true" class="p-fluid" (onHide)="cerrarDialogo($event)">
+            <div *ngIf="empleado">
+                <empleado-edit (outForm)="cerrarDialogo($event)" [empleado]="empleado"></empleado-edit>
+            </div>
+        </p-dialog>
+    </div>
+</div>
+

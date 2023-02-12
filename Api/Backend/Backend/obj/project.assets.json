@@ -2267,11 +2267,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\prueba_tecnica\\Practica-C-y-Angular\\Api\\Backend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\prueba_tecnica\\Practica-Donet-Angular\\Api\\Backend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\prueba_tecnica\\Practica-C-y-Angular\\Api\\Backend\\Backend\\Backend.csproj",
+      "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\prueba_tecnica\\Practica-Donet-Angular\\Api\\Backend\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\prueba_tecnica\\Practica-C-y-Angular\\Api\\Backend\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\prueba_tecnica\\Practica-Donet-Angular\\Api\\Backend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",

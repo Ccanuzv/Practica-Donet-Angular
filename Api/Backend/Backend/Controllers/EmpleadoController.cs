@@ -10,7 +10,7 @@ using System.Data;
 
 namespace Backend.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("Core/[controller]")]
     [ApiController]
     public class EmpleadoController : Controller
