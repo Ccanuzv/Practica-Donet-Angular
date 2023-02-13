@@ -1,1 +1,37 @@
-<p>cambiopass works!</p>
+<div>
+    <!-- <div class="login-body"  *ngIf="token.id == ruta"> -->
+        <div class="login-body">       
+        <p-toast position="top-right"></p-toast>
+            <form [formGroup]="form" (ngSubmit)="saveUsuario()">
+                <div class="card p-fluid" style="max-width: 45rem; margin: auto; padding: 30px;">  
+                    <h1 [style]="{'text-align':'center'}">Cambio de Contraseña</h1>
+                    <!-- <h3 [style]="{'text-align':'center'}">Es necesario cambiar o actualizar su contraseña</h3> -->
+                    <label for="float-input">Nueva Contraseña</label>
+                    <br>
+                    <div class="field">
+                        <p-password  formControlName="password" id="password" [feedback]="false" class="ng-invalid ng-dirty"></p-password>
+                    </div>
+                    <br>
+                    <label for="float-input">Repite la Contraseña</label>
+                    <div class="field">
+                        <p-password  formControlName="password2" id="password2" [feedback]="false" class="ng-invalid ng-dirty"></p-password>
+                    </div>
+                    <br>
+                    <label for="float-input">Fecha de Nacimiento</label>
+                    <div class="field">
+                        <p-calendar  formControlName="edad" id="edad" class="ng-invalid ng-dirty"></p-calendar>
+                    </div>
+                    
+                    <br>
+                    <br>
+    
+                    <div style="text-align: center;">
+                        <button pButton pRipple type="button" label="actualizar" [disabled]="!(form.value.password == form.value.password2) || form.value.edad == null"  type="submit" icon="pi pi-save" class="mr-2 mb-2"></button>
+                        <button pButton pRipple type="button" label="Regresar a inicio de sesión" icon="pi pi-arrow-circle-left" class="p-button-success mr-2 mb-2" (click)="salir()"></button>
+                    </div>
+                </div> 
+            </form>
+        </div>
+    </div>
+                    
+    

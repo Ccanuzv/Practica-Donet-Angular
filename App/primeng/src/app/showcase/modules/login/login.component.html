@@ -1,21 +1,21 @@
-<div class="login-body" >
+<!-- <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px" >
     <div class="login-panel p-fluid" style="box-shadow: 5px 5px 5px #bdb9b9af; border-radius: 2.5%;">
         <form (submit) = "login()" [formGroup]="formLogin"  class="grid grid-nogutter">
-            <div class="col-12">  
-                
+            <div class="col-12">
+
                 <div *ngIf="logo != 'Logo'">
-                    <img src="{{url}}{{logo}}" style="max-height: 15rem; margin-left: auto; margin-right: auto; margin-top: 10px; display: block;">  
+                    <img src="{{url}}{{logo}}" style="max-height: 15rem; margin-left: auto; margin-right: auto; margin-top: 10px; display: block;">
                 </div>
                 <div *ngIf="logo == 'Logo'">
-                    <img src="assets/layout/images/default_logo.png" style="margin-left: auto; margin-right: auto; display: block;">  
+                    <img src="../assets/layout/images/default_logo.png" style="margin-left: auto; margin-right: auto; display: block;">
                 </div>
-                
+
             </div>
 
             <div style="margin-left: auto; margin-right: auto; display: block; padding-right: 40px;">
                 <h2>Bienvenido</h2>
             </div>
-            
+
             <div class="col-12" style="margin-bottom: 10px;">
                 <label for="username">Nombre de usuario</label>
                 <div class="input-wrapper">
@@ -33,10 +33,49 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-12 button-container">
                 <p-button type="submit">Iniciar Sesión</p-button>
             </div>
         </form>
     </div>
-</div>
+</div> -->
+
+<div class="login-panel p-col-6"  style="text-align: center;">
+    <div class="p-grid p-nogutter p-justify-center p-align-center" style="height:100%; width: 30%; text-align: center;">
+      <div class="p-xl-3 p-lg-6 p-md-8 p-sm-10">
+        <form (submit) = "login()" [formGroup]="formLogin" >
+        <p-panel header="Bienvenidos">
+          <div class="p-grid p-justify-center p-align-center">
+            <div class="p-xl-6 p-lg-6 p-md-8 p-sm-10">
+              <img src="../assets/layout/images/default_logo.png" class="login-logo">
+            </div>
+            <div class="p-col-12">
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                <input id="input-username" type="text" size="30" pInputText formControlName="email" autocomplete="off"
+                  placeholder="Usuario">
+              </div>
+            </div>
+            <div class="p-col-12">
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
+                <input id="input-password" type="password" size="30" pInputText formControlName="password" autocomplete="off"
+                  placeholder="Contraseña">
+              </div>
+            </div>
+          </div>
+          <div class="p-grid">
+            <div class="p-col-6" style="padding-top: 10px;">
+              <button pButton type="button" label="Login" class="ui-button-raised p-button-lg" 
+                (click)="login()"></button>
+            </div>
+          </div>
+        </p-panel>
+    </form>
+        <div class="extra-page-footer">
+            <a href="/Registrar">Registrarse!</a> <br>
+        </div>
+      </div>
+    </div>
+  </div>

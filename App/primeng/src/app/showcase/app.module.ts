@@ -47,11 +47,17 @@ import { AppMenuComponent } from './app.menu.component';
 import { AppNewsComponent } from './app.news.component';
 import { AppTopBarComponent } from './app.topbar.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { LoginComponent } from './modules/login/login.component';
-import { CambiopassComponent } from './modules/login/cambiopass/cambiopass.component';
 
 @NgModule({
-    declarations: [AppComponent, AppNewsComponent, AppTopBarComponent, AppMenuComponent, AppConfigComponent, AppFooterComponent, LandingComponent, AppMainComponent, LoginComponent, CambiopassComponent],
+    declarations: [
+        AppComponent, 
+        AppNewsComponent, 
+        AppTopBarComponent, 
+        AppMenuComponent, 
+        AppConfigComponent, 
+        AppFooterComponent, 
+        LandingComponent, 
+        AppMainComponent,],
     imports: [
         FormsModule,
         ReactiveFormsModule,
