@@ -1,0 +1,23 @@
+<div>
+        <div class="login-body">       
+        <p-toast position="top-right"></p-toast>
+            <form [formGroup]="form" (ngSubmit)="saveUsuario()">
+                <div class="card p-fluid" style="max-width: 45rem; margin: auto; padding: 30px;">  
+                    <h1 [style]="{'text-align':'center'}">Solicitar Nueva Contraseña</h1>
+                    <!-- <h3 [style]="{'text-align':'center'}">Es necesario cambiar o actualizar su contraseña</h3> -->
+                    <label for="float-input">Correo</label>
+                    <br>
+                    <div class="field">
+                        <input pInputText formControlName="email" id="nombre" autocomplete="off" class="ng-invalid ng-dirty" type="email" />
+                    </div>                  
+                    <br>
+                    <br>
+    
+                    <div style="text-align: center;">
+                        <button pButton pRipple type="button" label="actualizar" type="submit" icon="pi pi-save" class="mr-2 mb-2"></button>
+                        <button pButton pRipple type="button" label="Regresar a inicio de sesión" icon="pi pi-arrow-circle-left" class="p-button-success mr-2 mb-2" (click)="salir()"></button>
+                    </div>
+                </div> 
+            </form>
+        </div>
+    </div>

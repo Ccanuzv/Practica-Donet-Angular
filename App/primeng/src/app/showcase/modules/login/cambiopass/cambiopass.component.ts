@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { CambioPass } from 'src/Modelo/Pass';
 import { AuthService } from 'src/services/auth.service';
+import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 @Component({
   selector: 'cambiopass',
@@ -15,6 +17,7 @@ export class CambiopassComponent implements OnInit {
 
   form: FormGroup;
   usuarioCambioPass: CambioPass;
+  id: string;
 
   constructor(
     private fb: FormBuilder,
@@ -23,22 +26,26 @@ export class CambiopassComponent implements OnInit {
     private messageService: MessageService
   ) {
     this.form = this.fb.group({
-      password: [null, Validators.required],
+      pass: [null, Validators.required],
       password2: [null, Validators.required],
-      edad: [null, Validators.required],
+      fecha: [null, Validators.required],
     });
-    this.ruta.params.subscribe(params=>{
-      this.ruta = params['id'];
+    this.ruta.queryParams.subscribe(params=>{
+      this.id = params['id'];
     })
+
    }
 
   ngOnInit(): void {
   }
 
   saveUsuario(){
-    if(this.form.value.password == this.form.value.password2){
-      // this.usuarioCambioPass = new UsuarioCambioPass(null);
-      // this.usuarioCambioPass.password = this.form.value.password;
+    if(this.form.value.pass == this.form.value.password2){
+
+      this.usuarioCambioPass = new CambioPass(null);
+      this.usuarioCambioPass.pass = this.form.value.pass;
+      this.usuarioCambioPass.token = this.id;
+      this.usuarioCambioPass.fecha = this.form.value.fecha;
       this.authService.cambioPassUsuario(this.usuarioCambioPass)
       .subscribe(
         data => {
@@ -46,7 +53,7 @@ export class CambiopassComponent implements OnInit {
           this.messageService.add({severity:'success', summary:'Actualización', detail:'Actualización correcta!'});
         },
         error => {
-          this.messageService.add({severity:'error', summary: 'Error', detail: ' ' + error});
+          this.messageService.add({severity:'error', summary: 'Error', detail: ' ' + error.error});
           console.log(error.error);
         });
     }else{
@@ -57,5 +64,6 @@ export class CambiopassComponent implements OnInit {
   salir(){
     this.authService.logout();
   }
+
 
 }

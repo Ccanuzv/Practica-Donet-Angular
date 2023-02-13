@@ -9,7 +9,7 @@
                     <label for="float-input">Nueva Contraseña</label>
                     <br>
                     <div class="field">
-                        <p-password  formControlName="password" id="password" [feedback]="false" class="ng-invalid ng-dirty"></p-password>
+                        <p-password  formControlName="pass" id="password" [feedback]="false" class="ng-invalid ng-dirty"></p-password>
                     </div>
                     <br>
                     <label for="float-input">Repite la Contraseña</label>
@@ -19,14 +19,14 @@
                     <br>
                     <label for="float-input">Fecha de Nacimiento</label>
                     <div class="field">
-                        <p-calendar  formControlName="edad" id="edad" class="ng-invalid ng-dirty"></p-calendar>
+                        <p-calendar  formControlName="fecha" id="edad" dateFormat="dd/MM/yy" inputId="dateformat" class="ng-invalid ng-dirty"></p-calendar>
                     </div>
                     
                     <br>
                     <br>
     
                     <div style="text-align: center;">
-                        <button pButton pRipple type="button" label="actualizar" [disabled]="!(form.value.password == form.value.password2) || form.value.edad == null"  type="submit" icon="pi pi-save" class="mr-2 mb-2"></button>
+                        <button pButton pRipple type="button" label="actualizar" [disabled]="!(form.value.pass == form.value.password2) || form.value.fecha == null"  type="submit" icon="pi pi-save" class="mr-2 mb-2"></button>
                         <button pButton pRipple type="button" label="Regresar a inicio de sesión" icon="pi pi-arrow-circle-left" class="p-button-success mr-2 mb-2" (click)="salir()"></button>
                     </div>
                 </div> 

@@ -16,10 +16,12 @@ import {PasswordModule} from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { AppComponent } from '../../app.component';
 import { PanelModule } from 'primeng/panel';
+import { SolicitudComponent } from './solicitud/solicitud.component';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    SolicitudComponent
   ],
   
   imports: [
