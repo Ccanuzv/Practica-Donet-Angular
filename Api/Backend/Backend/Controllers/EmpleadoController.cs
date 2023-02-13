@@ -123,5 +123,27 @@ namespace Backend.Controllers
 
         }
 
+        [HttpPut]
+        public ActionResult PutEmpleado(EmpleadoViewModel model)
+        {
+            var empleado = _empleadoRepository.GetAll().FirstOrDefault(w => w.EmpleadoId.Equals(model.Id));
+
+            if (empleado != null)
+            {
+                empleado.EmpleadoNombre = model.Nombre;
+                empleado.EmpleadoDPI = model.DPI;
+                empleado.EmpleadoCantidadHijos = model.CantidadHijos;
+                empleado.EmpleadoSalario = model.Salario;
+                empleado.EmpleadoBonoDecreto = model.BonoDecreto;
+                empleado.EmpleadoUsuarioId = ClaimUsuario.UsuarioId(HttpContext);
+
+                bool result = _empleadoRepository.Update(empleado);
+                return Ok(result);
+            }
+
+            return Unauthorized("No puede actualizar el empleado");
+        }
+
+
     }
-    }
+}

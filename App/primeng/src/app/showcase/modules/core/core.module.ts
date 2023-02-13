@@ -31,6 +31,7 @@ import { EmpleadoManagerComponent } from './Componentes/empleados/empleado-manag
 import { EmpleadoEditComponent } from './Componentes/empleados/empleado-edit/empleado-edit.component';
 import { EmpleadoListComponent } from './Componentes/empleados/empleado-list/empleado-list.component';
 import { PalondrimoComponent } from './Componentes/palondrimo/palondrimo.component';
+import { GlobalComponenteModule } from '../global-componente/global-componente.module';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { PalondrimoComponent } from './Componentes/palondrimo/palondrimo.compone
     ListboxModule,
     InputMaskModule,
     PasswordModule,
-    ChipModule
+    ChipModule,
+    GlobalComponenteModule
   ],
   bootstrap: [AppComponent]
 })

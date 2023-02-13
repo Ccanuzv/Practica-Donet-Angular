@@ -4,5 +4,6 @@ namespace Backend.Modelo.Repositories.IRepository
 {
     public interface IRecuperacionRepository : IRepository<RecuperacionContrasenia>
     {
+        IEnumerable<RecuperacionContrasenia> GetInclude();
     }
 }

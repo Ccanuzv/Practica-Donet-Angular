@@ -86,6 +86,7 @@
     },
     "dependencies": {
         "@auth0/angular-jwt": "^5.1.2",
+        "moment": "^2.29.4",
         "sweetalert2": "^11.7.1"
     }
 }

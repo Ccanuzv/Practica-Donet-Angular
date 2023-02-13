@@ -1,15 +1,17 @@
 export class CambioPass {
 
-    passwordActual: string;
-    password: string;
-    edad: Date;
+    token: string;
+    pass: string;
+    fecha: Date;
     constructor(usuario: CambioPass){
         if (usuario){
-            this.password = usuario.password;
-            this.edad = usuario.edad;
+            this.pass = usuario.pass;
+            this.fecha = usuario.fecha;
+            this.token = usuario.token;
         } else {
-            this.password = '';
-            this.edad = new Date();
+            this.pass= '';
+            this.token = '';
+            this.fecha = new Date();
         }
     }
 }

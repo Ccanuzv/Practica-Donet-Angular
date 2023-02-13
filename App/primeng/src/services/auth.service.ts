@@ -57,8 +57,13 @@ export class AuthService {
   }
 
   cambioPassUsuario(usuario: CambioPass): Observable<any>{
-    const url = `${environment.server}/Core/Usuario/CambioPassword`;
+    const url = `${environment.server}/Core/Usuario`;
     return this.http.put<CambioPass>(url, usuario);
+  }
+
+  solicitudUsuario(email: string): Observable<any>{
+    const url = `${environment.server}/Core/Usuario/Email?email=`+email;
+    return this.http.post<string>(url, email);
   }
 
   logout(){

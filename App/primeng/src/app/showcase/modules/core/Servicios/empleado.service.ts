@@ -24,4 +24,9 @@ export class EmpleadoService {
     const url = `${environment.server}/Core/Empleado`;
     return this.http.post<EmpleadoCrear>(url, empleado);
   }
+
+  updateEmpleado(empleado: Empleado): Observable<any>{
+    const url = `${environment.server}/Core/Empleado`;
+    return this.http.put<Empleado>(url, empleado);
+  }
 }

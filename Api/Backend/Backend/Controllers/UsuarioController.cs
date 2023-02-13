@@ -13,6 +13,7 @@ using System.Net;
 using MimeKit;
 using MimeKit.Text;
 using System.Security.Cryptography;
+using Backend.Modelo.Repositories.Repository;
 
 namespace Backend.Controllers
 {
@@ -107,7 +108,7 @@ namespace Backend.Controllers
                 _recuperacionRepository.Create(recu);
 
                 //string url = "127.0.0.1:4200/recuperacion?id=" + recu.RecuperacionId;
-                string url = "http://127.0.0.1:4200";
+                string url = "http://127.0.0.1:4200/Cambio/Pass?id="+recu.RecuperacionId;
 
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddUserSecrets<Conexion>().Build();
                 string correo = builder.GetConnectionString("correo").ToString();
@@ -138,7 +139,41 @@ namespace Backend.Controllers
             return Ok(1);
         }
 
-            private OkObjectResult CreacionTokenYClaims(string usuarioId, string usuarioNombre)
+        [HttpPut]
+        public ActionResult PutPass(UsuarioRecuperaViewModel model)
+        {
+            var recu = _recuperacionRepository
+                        .GetInclude().FirstOrDefault(w => w.RecuperacionId.Equals(model.token)
+                                                       && w.Usuario.UsuarioFechaNacimiento.ToString("dd/MM/yyyy").Equals(model.fecha.AddDays(1).ToString("dd/MM/yyyy"))
+                                                       && w.RecuperacionEstado == true);
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    if (recu != null)
+                    {
+                        recu.RecuperacionEstado = false;
+                        _recuperacionRepository.Update(recu);
+                        string passHah = _usuarioRepository.CrearPasswordHash(recu.Usuario.UsuarioId, model.Pass);
+                        recu.Usuario.UsuarioPass = passHah;
+                        bool result = _usuarioRepository.Update(recu.Usuario);
+                        transaction.Commit();
+                        return Ok(result);
+                    }
+                }
+                catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                transaction.Rollback();
+                return BadRequest("error en al actualizar");
+            }
+
+        }
+
+            return Unauthorized("No puede actualizar el usuario");
+        }
+
+        private OkObjectResult CreacionTokenYClaims(string usuarioId, string usuarioNombre)
         {
             //Creacion de claims unico para el token
             var claims = new List<Claim>

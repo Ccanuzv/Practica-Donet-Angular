@@ -39,7 +39,7 @@
                             <th pSortableColumn="dpi">Bono Paternal</th>
                             <th pSortableColumn="dpi">Salario Total</th>
                             <th pSortableColumn="dpi">Salario Liquido</th>
-                            <!-- <th>Opciones</th> -->
+                            <th>Opciones</th>
                         </tr>
                         <tr>
                             <th>
@@ -55,7 +55,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <!-- <th></th> -->
+                            <th></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-empleado>
@@ -104,11 +104,11 @@
                                 <span class="p-column-title">salarioLiquido</span>
                                 {{empleado.salarioLiquido}}
                             </td>
-                            <!-- <td>
+                            <td>
                                 <div class="flex">
-                                    <button pButton pRipple icon="pi pi-pencil" [disabled]="(modificarEstablecimiento == false)" class="p-button-rounded p-button-success mr-2" (click)="nuevoMesPago(mesesPago)"></button>
+                                    <button pButton pRipple icon="pi pi-pencil" [disabled]="(modificarEstablecimiento == false)" class="p-button-rounded p-button-success mr-2" (click)="nuevoEmpleado(empleado)"></button>
                                 </div>
-                            </td> -->
+                            </td>
                         </tr>
                     </ng-template>
                 </p-table>

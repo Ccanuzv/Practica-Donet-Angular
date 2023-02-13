@@ -1,6 +1,7 @@
 ﻿using Backend.Data;
 using Backend.Modelo.Entity;
 using Backend.Modelo.Repositories.IRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Modelo.Repositories.Repository
 {
@@ -13,6 +14,11 @@ namespace Backend.Modelo.Repositories.Repository
         {
             _context = context;
             _logger = logger;
+        }
+
+        public IEnumerable<RecuperacionContrasenia> GetInclude()
+        {
+            return _context.Recuperaciones.Include(i => i.Usuario);
         }
     }
 }

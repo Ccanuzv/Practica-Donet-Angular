@@ -32,5 +32,13 @@ namespace Backend.Modelo.ViewModels
         public string Password { get; set; }
 
     }
-    
+
+    public class UsuarioRecuperaViewModel
+    {
+        public string token { get; set; }
+        public string Pass { get; set; }
+        public DateTime fecha { get; set; }
+
+    }
+
 }

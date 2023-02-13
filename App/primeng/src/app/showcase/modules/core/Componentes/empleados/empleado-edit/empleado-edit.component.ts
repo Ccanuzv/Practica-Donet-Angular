@@ -36,22 +36,42 @@ export class EmpleadoEditComponent implements OnInit {
   }
 
   saveEmpleado(){
-    this.empleadoCrear = new EmpleadoCrear(null);
-    this.empleadoCrear.nombre = this.form.value.nombre;
-    this.empleadoCrear.dpi = this.form.value.dpi;
-    this.empleadoCrear.cantidadHijos = this.form.value.cantidadHijos;
-    this.empleadoCrear.salario = this.form.value.salario;
-    this.empleadoCrear.bonoDecreto = this.form.value.bonoDecreto;
-    this.empleadoService.createEmpleado(this.empleadoCrear)
-    .subscribe(
-      data => {
-        this.messageService.add({severity:'success', summary:'Crear', detail:'Empleado creado!'});
-        this.return(true);
-      },
-      error => {
-        this.messageService.add({severity:'error', summary: 'Error', detail: error.error});
-        console.log(error.error);
-      });
+
+    if(this.empleado.id){
+      this.empleado.nombre = this.form.value.nombre;
+      this.empleado.dpi = this.form.value.dpi;
+      this.empleado.cantidadHijos = this.form.value.cantidadHijos;
+      this.empleado.salario = this.form.value.salario;
+      this.empleado.bonoDecreto = this.form.value.bonoDecreto;
+
+      this.empleadoService.updateEmpleado(this.empleado)
+      .subscribe(
+        data => {
+          this.messageService.add({severity:'success', summary:'Actualización', detail:'Actualización correcta!'});
+          this.return(true);
+        },
+        error => {
+          console.log(error);
+          this.messageService.add({severity:'error', summary: 'Error', detail: 'Error al actualizar'});
+        });
+    }else {
+      this.empleadoCrear = new EmpleadoCrear(null);
+      this.empleadoCrear.nombre = this.form.value.nombre;
+      this.empleadoCrear.dpi = this.form.value.dpi;
+      this.empleadoCrear.cantidadHijos = this.form.value.cantidadHijos;
+      this.empleadoCrear.salario = this.form.value.salario;
+      this.empleadoCrear.bonoDecreto = this.form.value.bonoDecreto;
+      this.empleadoService.createEmpleado(this.empleadoCrear)
+      .subscribe(
+        data => {
+          this.messageService.add({severity:'success', summary:'Crear', detail:'Empleado creado!'});
+          this.return(true);
+        },
+        error => {
+          this.messageService.add({severity:'error', summary: 'Error', detail: error.error});
+          console.log(error.error);
+        });
+    }
     } 
 
 

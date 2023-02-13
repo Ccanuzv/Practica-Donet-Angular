@@ -22,8 +22,8 @@ namespace Backend.Modelo.ViewModels
         public float Salario { get; set; }
         public float BonoDecreto { get; set; }
         public DateTime FechaCreacion { get; set; }
-        public string UsuarioId { get; set; }
-        public UsuarioViewModel Usuario { get; set; }
+        public string? UsuarioId { get; set; }
+        public UsuarioViewModel? Usuario { get; set; }
         public float _igss;
         public float IGSS{
             get { return (float)(Salario*4.83/100); }
