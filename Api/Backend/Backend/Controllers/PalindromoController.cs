@@ -14,8 +14,14 @@ namespace Backend.Controllers
         {
             try
             {
-                var result = ListPalindrome(texto).OrderByDescending(o => o.Length);
-
+                IEnumerable<string> result = null;
+                if (texto.Contains(" "))
+                {
+                    result = ListPalindrome(texto.Split(" ").ToList()).OrderByDescending(o => o.Length);
+                } else
+                {
+                    result = ListPalindrome2(texto).OrderByDescending(o => o.Length);
+                }
 
                 return Ok(result);
             }
@@ -25,7 +31,20 @@ namespace Backend.Controllers
             }
         }
 
-        private List<string> ListPalindrome(string PalindromeString)
+        private List<string> ListPalindrome(List<string> listado)
+        {
+            List<string> ListPalindrome = new List<string>();
+
+            listado.ForEach(s => { 
+                if (s.SequenceEqual(s.Reverse()))
+                {
+                    ListPalindrome.Add(s);
+                }         
+            });
+            return ListPalindrome;
+        }
+
+        private List<string> ListPalindrome2(string PalindromeString)
         {
             List<string> ListPalindrome = new List<string>();
             for (float index = 0; index < PalindromeString.Length; index += (float).5)
