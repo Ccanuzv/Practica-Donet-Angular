@@ -60,7 +60,7 @@ namespace Backend.Controllers
                     usuario.UsuarioNombre = model.Nombre;
                     usuario.UsuarioPass = passHah;
                     usuario.UsuarioEmail = model.Email;
-                    usuario.UsuarioFechaNacimiento = model.UsuarioFechaNacimiento;
+                    usuario.UsuarioFechaNacimiento = model.Fecha.AddDays(1);
                     _usuarioRepository.Create(usuario);
                     transaction.Commit();
 

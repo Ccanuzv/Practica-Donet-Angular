@@ -17,11 +17,14 @@ import { DividerModule } from 'primeng/divider';
 import { AppComponent } from '../../app.component';
 import { PanelModule } from 'primeng/panel';
 import { SolicitudComponent } from './solicitud/solicitud.component';
+import { RegisterComponent } from './register/register.component';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SolicitudComponent
+    SolicitudComponent,
+    RegisterComponent
   ],
   
   imports: [
@@ -42,6 +45,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     PanelModule,
     //BrowserAnimationsModule,
     DividerModule,
+    CalendarModule
   ],
   bootstrap: [AppComponent],
 })

@@ -1,18 +1,17 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent} from './login.component';
+import { RegisterComponent } from './register/register.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 
 
 const routes: Routes = [
   {path: 'login',
   component: LoginComponent},
-  {path: 'registrar',
+  {path: 'solicitud',
   component: SolicitudComponent},
-  // {path: 'CambioPass/:id',
-  // component: CambiopassComponent, canActivate:[()=> false]},
-  // {path: 'CambioPass',
-  // component: CambiopassComponent, canActivate:[()=> false]}
+  {path: 'registrar',
+  component: RegisterComponent},
 ];
 
 @NgModule({

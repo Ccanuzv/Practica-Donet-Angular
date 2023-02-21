@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 // import { Usuario } from 'src/app/modules/core/modelos/usuario';
 import Swal from 'sweetalert2';
 import { CambioPass } from 'src/Modelo/Pass';
+import { Usuario } from 'src/Modelo/Usuario';
 // import { IPagination } from 'src/app/modules/core/modelos/pagination';
 
 const  helper = new JwtHelperService();
@@ -59,6 +60,11 @@ export class AuthService {
   cambioPassUsuario(usuario: CambioPass): Observable<any>{
     const url = `${environment.server}/Core/Usuario`;
     return this.http.put<CambioPass>(url, usuario);
+  }
+
+  registerUsuario(usuario: Usuario): Observable<any>{
+    const url = `${environment.server}/Core/Usuario`;
+    return this.http.post<Usuario>(url, usuario);
   }
 
   solicitudUsuario(email: string): Observable<any>{

@@ -13,7 +13,7 @@ namespace Backend.Modelo.ViewModels
         [Required]
         public string Password { get; set; }
         [Required]
-        public DateTime UsuarioFechaNacimiento { get; set; }
+        public DateTime Fecha { get; set; }
 
     }
 

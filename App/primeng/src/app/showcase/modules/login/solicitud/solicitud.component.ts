@@ -12,7 +12,6 @@ import { AuthService } from 'src/services/auth.service';
 export class SolicitudComponent implements OnInit {
 
   form: FormGroup;
-  email: string;
   
   constructor(
     private fb: FormBuilder,
