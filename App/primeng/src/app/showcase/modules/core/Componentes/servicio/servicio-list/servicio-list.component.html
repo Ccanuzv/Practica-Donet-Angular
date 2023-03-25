@@ -1,3 +1,5 @@
+<p-toast position="top-right"></p-toast>
+
 <div class="grid">
     <div class="col-12">
         <div >
@@ -72,6 +74,7 @@
                             <td>
                                 <div class="flex">
                                     <button pButton pRipple icon="pi pi-pencil" *ngIf="servicio.estado" class="p-button-rounded p-button-success mr-2" (click)="nuevoServicio(servicio)"></button>
+                                    <button pButton pRipple icon="pi pi-times" *ngIf="servicio.estado" class="p-button-rounded p-button-danger mr-2" (click)="eliminarServicio(servicio)"></button>
                                 </div>
                             </td>
                         </tr>
@@ -86,5 +89,9 @@
             </div>
         </p-dialog>
     </div>
+</div>
+
+<div>
+    <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 </div>
 

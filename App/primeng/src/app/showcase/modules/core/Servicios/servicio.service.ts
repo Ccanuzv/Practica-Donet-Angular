@@ -35,4 +35,9 @@ export class ServicioService {
     const url = `${environment.server}/api/Servicio`;
     return this.http.put<Servicio>(url, servicio);
   }
+
+  delete(id: string): Observable<any>{
+    const url = `${environment.server}/api/Servicio/`+id;
+    return this.http.delete<any>(url);
+  }
 }

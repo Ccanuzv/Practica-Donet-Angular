@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent, MessageService } from 'primeng/api';
+import { ConfirmationService, ConfirmEventType, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Servicio } from '../../../Modelos/servicio';
 import { ServicioService } from '../../../Servicios/servicio.service';
 
@@ -7,7 +7,7 @@ import { ServicioService } from '../../../Servicios/servicio.service';
   selector: 'servicio-list',
   templateUrl: './servicio-list.component.html',
   styleUrls: ['./servicio-list.component.css'],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class ServicioListComponent implements OnInit {
 
@@ -27,6 +27,7 @@ export class ServicioListComponent implements OnInit {
   constructor(
     private servicioService: ServicioService,
     private messageService: MessageService,
+    private confirmationService: ConfirmationService,
   ) { }
 
   ngOnInit(): void {
@@ -91,6 +92,36 @@ cerrarDialogo($event) {
   }
   this.diag_servicio = false;
   this.servicio = null;
+}
+
+
+eliminarServicio(servicio: Servicio) {
+  this.confirmationService.confirm({
+      message: '¿Está seguro de que desea continuar?',
+      header: 'Confirmación',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.servicioService.delete(servicio.id).subscribe(
+          data => {
+            this.messageService.add({severity:'success', summary:'Crear', detail:'Servicio Desactivado!'});
+            this.loadServicio(null);
+          },
+          error => {
+          this.messageService.add({severity:'error', summary: 'Error', detail: 'Error al Cargar datos'});
+          console.log(error);
+        });
+      },
+      reject: (type) => {
+          // switch (type) {
+          //     case ConfirmEventType.REJECT:
+          //         this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+          //         break;
+          //     case ConfirmEventType.CANCEL:
+          //         this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+          //         break;
+          // }
+      }
+  });
 }
 
 }

@@ -6,6 +6,7 @@ using Backend.Modelo.ViewModels;
 using Backend.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers
 {
@@ -137,7 +138,7 @@ namespace Backend.Controllers
                 return Ok(result);
             }
 
-            return Unauthorized("No puede actualizar el servicio");
+            return BadRequest("No puede actualizar el servicio");
         }
 
         [HttpGet("listadoServicio")]
@@ -147,15 +148,26 @@ namespace Backend.Controllers
             var result = _servicioRepository.GetInclude()
                 .Where(w => w.ServicioEstado == true).Select(s => new ServicioListadoViewModel
                 {
-                Id = s.ServicioId,
-                Nombre= s.ServicioNombre,
-                Descripcion = s.ServicioDescripcion,
-                MontoCosto = s.ServicioMontoCosto,
-                MontoVenta = s.ServicioMontoVenta,
-                Estado = s.servicio_clientes.Any(a => a.ClienteServicioClienteId.Equals(cliente)
-                                                      && a.ClienteServicioEstado == true)
-            });
+                    Id = s.ServicioId,
+                    Nombre = s.ServicioNombre,
+                    Descripcion = s.ServicioDescripcion,
+                    MontoCosto = s.ServicioMontoCosto,
+                    MontoVenta = s.ServicioMontoVenta,
+                    Estado = s.servicio_clientes.Any(a => a.ClienteServicioClienteId.Equals(cliente)
+                                                          && a.ClienteServicioEstado == true)
+                });
             return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(string id) {
+            var servicio = _servicioRepository.GetAll().FirstOrDefault(w => w.ServicioId.Equals(id));
+            if (servicio == null)
+            {
+                return BadRequest("No puede realizar esta opereación");
+            }
+            _context.Database.ExecuteSqlInterpolatedAsync($@"EXEC dbo.ServicioDeBaja @id ={id}");
+            return Ok(1);
         }
 
     }

@@ -39,7 +39,8 @@ import { ClienteListComponent } from './Componentes/cliente/cliente-list/cliente
 import { ClienteServicioComponent } from './Componentes/cliente/cliente-servicio/cliente-servicio.component';
 import { ServicioListComponent } from './Componentes/servicio/servicio-list/servicio-list.component';
 import { ServicioEditComponent } from './Componentes/servicio/servicio-edit/servicio-edit.component';
-import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
+import { DataViewModule } from 'primeng/dataview';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
     ChipModule,
     GlobalComponenteModule,
     DataViewModule,
+    ConfirmDialogModule
   ],
   bootstrap: [AppComponent]
 })
