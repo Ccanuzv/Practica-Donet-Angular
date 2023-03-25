@@ -1,0 +1,31 @@
+<p-toast position="top-right"></p-toast>
+<p-dataView #dv [value]="servicios">
+    <ng-template let-product pTemplate="listItem">
+        <div class="col-12">
+            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+                <!-- <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" /> -->
+                <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                    <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                        <div class="text-2xl font-bold text-900">{{ product.nombre }}</div>
+                        <!-- <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
+                        <span class="font-semibold">{{'Costo Venta Q'+ product.montoCosto }}</span>
+                        <div class="flex align-items-center gap-3">
+                            <span class="flex align-items-center gap-2">
+                                <i class="pi pi-tag"></i>
+                                <span class="font-semibold">{{ product.descripcion }}</span>
+                            </span>
+                            <p-tag>
+                                <!-- <span class="font-semibold">{{ product.montoCosto }}</span> -->
+                            </p-tag>
+                        </div>
+                    </div>
+                    <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                        <span class="text-2xl font-semibold">{{'Q'+ product.montoVenta }}</span>
+                        <button pButton icon="pi pi-shopping-cart" *ngIf="!product.estado" (click)="saveClienteServicio(product)" class="md:align-self-end mb-2 p-button-rounded"></button>
+                        <button pButton icon="pi pi-times" *ngIf="product.estado" (click)="saveClienteServicio(product)" class="md:align-self-end mb-2 p-button-danger"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-dataView>

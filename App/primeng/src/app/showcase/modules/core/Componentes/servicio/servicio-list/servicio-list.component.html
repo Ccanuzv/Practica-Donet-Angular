@@ -1,0 +1,90 @@
+<div class="grid">
+    <div class="col-12">
+        <div >
+            <div class="card">
+                <p-toolbar styleClass="mb-4">
+                    <ng-template pTemplate="left">
+                        <div class="my-2">
+                            <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-success mr-2" (click)="nuevoServicio()"></button>
+                        </div>
+                    </ng-template>
+                </p-toolbar>
+
+                <p-table #dt
+                [value]="servicios"
+                responsiveLayout="scroll"
+                [rows]="10"
+                [totalRecords] = "totalPages"
+                [lazy]="true" 
+                (onLazyLoad)="loadServicio($event)"
+                [(first)]="numeroPagina"
+                [paginator]="true"
+                dataKey="id">
+                    <ng-template pTemplate="caption">
+                        <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                            <h5 class="m-0">Listado de Servicios</h5>
+                        </div>
+                    </ng-template>
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon></th>
+                            <th pSortableColumn="NIT">Descripción</th>
+                            <th pSortableColumn="direccion">Monto Costo</th>
+                            <th pSortableColumn="telefono">Monto Venta</th>
+                            <th pSortableColumn="telefono">Estado</th>
+                            <th>Opciones</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input pInputText type="text" [(ngModel)]="Nombre" (keyup.enter)="loadServicio(null)" placeholder="Nombre" class="p-column-filter">
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-servicio>
+                        <tr>
+                            <td>
+                                <span class="p-column-title">Nombre</span>
+                                {{servicio.nombre}}
+                            </td>
+                             <td>
+                                <span class="p-column-title">Descripción</span>
+                                {{servicio.descripcion}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Monto Costo</span>
+                                {{servicio.montoCosto}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Monto Venta</span>
+                                {{servicio.montoVenta}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Estado</span>
+                                <i *ngIf="servicio.estado" class="pi pi-check"></i>
+                                <!-- {{servicio.estado}} -->
+                            </td>
+                            <td>
+                                <div class="flex">
+                                    <button pButton pRipple icon="pi pi-pencil" *ngIf="servicio.estado" class="p-button-rounded p-button-success mr-2" (click)="nuevoServicio(servicio)"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+        <p-dialog [(visible)]="diag_servicio" [style]="{width: '500px'}" header="{{title}}" [modal]="true" class="p-fluid" (onHide)="cerrarDialogo($event)">
+            <div *ngIf="servicio">
+                <servicio-edit (outForm)="cerrarDialogo($event)" [servicio]="servicio"></servicio-edit>
+            </div>
+        </p-dialog>
+    </div>
+</div>
+

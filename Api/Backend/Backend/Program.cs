@@ -40,14 +40,17 @@ builder.Services.AddSwaggerGen(options =>
 
     );
 
-var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection");
+var connectionString = builder.Configuration.GetConnectionString("SQLConnection");
 
-builder.Services.AddDbContext<PracticaDB>(options => options.UseNpgsql(connectionString));
+builder.Services.AddDbContext<PracticaDB>(options => options.UseSqlServer(connectionString));
 
 //integración de interfaces
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IEmpleadoRepository, EmpleadoRepository>();
 builder.Services.AddScoped<IRecuperacionRepository, RecuperacionRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IServicioRepository, ServicioRepository>();
+builder.Services.AddScoped<IClienteServicioRepository, ClienteServicioRespository>();
 
 
 //Agregar dependencia del token
@@ -85,7 +88,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+//AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 app.UseHttpsRedirection();
 

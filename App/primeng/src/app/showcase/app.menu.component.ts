@@ -33,7 +33,9 @@ declare let gtag: Function;
             <div class="layout-menu">
                 <div class="menu-category">General</div>
                 <div class="menu-items">
-                    <a [routerLink]="['Core/Empleado']" routerLinkActive="router-link-exact-active">Empleados</a>
+                    <!--<a [routerLink]="['Core/Empleado']" routerLinkActive="router-link-exact-active">Empleados</a>-->
+                    <a [routerLink]="['Core/Cliente']" routerLinkActive="router-link-exact-active">Clientes</a>
+                    <a [routerLink]="['Core/Servicio']" routerLinkActive="router-link-exact-active">Servicios</a>
                     <a [routerLink]="['Core/Polindromo']" routerLinkActive="router-link-exact-active">Palindromos <span class="p-tag">Nuevo</span></a>
                 </div>
             </div>

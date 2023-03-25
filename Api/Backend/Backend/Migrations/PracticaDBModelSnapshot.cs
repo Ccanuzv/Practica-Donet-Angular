@@ -3,8 +3,8 @@ using System;
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -18,60 +18,134 @@ namespace Backend.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Backend.Modelo.Entity.Empleado", b =>
+            modelBuilder.Entity("Backend.Modelo.Entity.Hame_Venta_Cliente", b =>
                 {
-                    b.Property<string>("EmpleadoId")
-                        .HasColumnType("text");
+                    b.Property<string>("ClienteId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<float>("EmpleadoBonoDecreto")
-                        .HasColumnType("real");
-
-                    b.Property<int>("EmpleadoCantidadHijos")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("EmpleadoDPI")
+                    b.Property<string>("ClienteDireccion")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EmpleadoFechaCreacion")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("EmpleadoNombre")
+                    b.Property<string>("ClienteEmail")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("EmpleadoSalario")
-                        .HasColumnType("real");
+                    b.Property<bool>("ClienteEstado")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("EmpleadoUsuarioId")
+                    b.Property<DateTime>("ClienteFechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ClienteNIT")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("EmpleadoId");
+                    b.Property<string>("ClienteNombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("EmpleadoUsuarioId");
+                    b.Property<string>("ClienteTelefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Empleados");
+                    b.Property<string>("ClienteUsuarioId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ClienteId");
+
+                    b.HasIndex("ClienteUsuarioId");
+
+                    b.ToTable("venta_cliente");
+                });
+
+            modelBuilder.Entity("Backend.Modelo.Entity.Hame_Venta_Cliente_Servicio", b =>
+                {
+                    b.Property<string>("ClienteServicioId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ClienteServicioClienteId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("ClienteServicioEstado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ClienteServicioFechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ClienteServicioServicioId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ClienteServicioUsuarioId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ClienteServicioId");
+
+                    b.HasIndex("ClienteServicioClienteId");
+
+                    b.HasIndex("ClienteServicioServicioId");
+
+                    b.HasIndex("ClienteServicioUsuarioId");
+
+                    b.ToTable("venta_cliente_servicio");
+                });
+
+            modelBuilder.Entity("Backend.Modelo.Entity.Hame_Venta_Servicio", b =>
+                {
+                    b.Property<string>("ServicioId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ServicioDescripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ServicioEstado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ServicioFechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("ServicioMontoCosto")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ServicioMontoVenta")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ServicioNombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServicioUsuarioId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ServicioId");
+
+                    b.HasIndex("ServicioUsuarioId");
+
+                    b.ToTable("venta_servicio");
                 });
 
             modelBuilder.Entity("Backend.Modelo.Entity.RecuperacionContrasenia", b =>
                 {
                     b.Property<string>("RecuperacionId")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("RecuperacionEstado")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("RecuperacionFechaCreacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("RecuperacionUsuarioId")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("RecuperacionId");
 
@@ -83,33 +157,67 @@ namespace Backend.Migrations
             modelBuilder.Entity("Backend.Modelo.Entity.Usuario", b =>
                 {
                     b.Property<string>("UsuarioId")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UsuarioEmail")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UsuarioFechaNacimiento")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UsuarioNombre")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UsuarioPass")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UsuarioId");
 
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("Backend.Modelo.Entity.Empleado", b =>
+            modelBuilder.Entity("Backend.Modelo.Entity.Hame_Venta_Cliente", b =>
                 {
                     b.HasOne("Backend.Modelo.Entity.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("EmpleadoUsuarioId")
+                        .HasForeignKey("ClienteUsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Backend.Modelo.Entity.Hame_Venta_Cliente_Servicio", b =>
+                {
+                    b.HasOne("Backend.Modelo.Entity.Hame_Venta_Cliente", "cliente")
+                        .WithMany("cliente_servicios")
+                        .HasForeignKey("ClienteServicioClienteId");
+
+                    b.HasOne("Backend.Modelo.Entity.Hame_Venta_Servicio", "servicio")
+                        .WithMany("servicio_clientes")
+                        .HasForeignKey("ClienteServicioServicioId");
+
+                    b.HasOne("Backend.Modelo.Entity.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("ClienteServicioUsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+
+                    b.Navigation("cliente");
+
+                    b.Navigation("servicio");
+                });
+
+            modelBuilder.Entity("Backend.Modelo.Entity.Hame_Venta_Servicio", b =>
+                {
+                    b.HasOne("Backend.Modelo.Entity.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("ServicioUsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -125,6 +233,16 @@ namespace Backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Backend.Modelo.Entity.Hame_Venta_Cliente", b =>
+                {
+                    b.Navigation("cliente_servicios");
+                });
+
+            modelBuilder.Entity("Backend.Modelo.Entity.Hame_Venta_Servicio", b =>
+                {
+                    b.Navigation("servicio_clientes");
                 });
 #pragma warning restore 612, 618
         }

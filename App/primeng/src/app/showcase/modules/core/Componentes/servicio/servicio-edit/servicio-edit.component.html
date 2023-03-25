@@ -1,0 +1,40 @@
+<p-toast position="top-right"></p-toast>
+<form [formGroup]="form" (ngSubmit)="saveServicio()">
+    <div class="p-fluid col-12">
+        <h5>Servicio</h5>
+
+        <br>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText formControlName="nombre" id="nombre" autocomplete="off" type="text" />
+                <label for="float-input">Nombre Completo</label>
+            </span>
+        </div>
+
+        <br>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText formControlName="descripcion" id="descripcion" autocomplete="off" type="text" />
+                <label for="float-input">Descripción</label>
+            </span>
+        </div>
+
+        <br>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText formControlName="montoCosto" appTwoDigitDecimaNumber id="montoCosto" autocomplete="off" type="text" />
+                <label for="float-input">Monto Costo</label>
+            </span>
+        </div>
+        <br>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText formControlName="montoVenta" appTwoDigitDecimaNumber id="montoVenta" autocomplete="off" type="text" />
+                <label for="float-input">Monto Venta</label>
+            </span>
+        </div>
+        <br>
+        <button pButton pRipple type="button" label="Guardar" [disabled]="form.invalid" type="submit" icon="pi pi-save"
+        class="mr-2 mb-2"></button>
+    </div>
+</form>

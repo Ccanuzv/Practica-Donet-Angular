@@ -1,0 +1,47 @@
+<p-toast position="top-right"></p-toast>
+<form [formGroup]="form" (ngSubmit)="saveCliente()">
+    <div class="p-fluid col-12">
+        <h5>Cliente</h5>
+
+        <br>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText formControlName="nombre" id="nombre" autocomplete="off" type="text" />
+                <label for="float-input">Nombre Completo</label>
+            </span>
+        </div>
+
+        <br>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText formControlName="nit" id="nit" autocomplete="off" type="text" />
+                <label for="float-input">NIT</label>
+            </span>
+        </div>
+
+        <br>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText formControlName="direccion" id="direccion" autocomplete="off" type="text" />
+                <label for="float-input">Dirección</label>
+            </span>
+        </div>
+        <br>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText formControlName="telefono" id="telefono" autocomplete="off" type="text" />
+                <label for="float-input">Telefono</label>
+            </span>
+        </div>
+        <br>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText formControlName="email" id="email" autocomplete="off" type="text" />
+                <label for="float-input">Email</label>
+            </span>
+        </div>
+        <br>
+        <button pButton pRipple type="button" label="Guardar" [disabled]="form.invalid" type="submit" icon="pi pi-save"
+        class="mr-2 mb-2"></button>
+    </div>
+</form>

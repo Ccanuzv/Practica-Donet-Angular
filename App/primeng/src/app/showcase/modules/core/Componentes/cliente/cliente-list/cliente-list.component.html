@@ -1,0 +1,108 @@
+<div class="grid">
+    <div class="col-12">
+        <div >
+            <div class="card">
+                <p-toolbar styleClass="mb-4">
+                    <ng-template pTemplate="left">
+                        <div class="my-2">
+                            <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-success mr-2" (click)="nuevoCliente()"></button>
+                        </div>
+                    </ng-template>
+                </p-toolbar>
+
+                <p-table #dt
+                [value]="clientes"
+                responsiveLayout="scroll"
+                [rows]="10"
+                [totalRecords] = "totalPages"
+                [lazy]="true" 
+                (onLazyLoad)="loadCliente($event)"
+                [(first)]="numeroPagina"
+                [paginator]="true"
+                dataKey="id">
+                    <ng-template pTemplate="caption">
+                        <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                            <h5 class="m-0">Listado de Clientes</h5>
+                        </div>
+                    </ng-template>
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon></th>
+                            <th pSortableColumn="NIT">NIT</th>
+                            <th pSortableColumn="direccion">dirección</th>
+                            <th pSortableColumn="telefono">Telefono</th>
+                            <th pSortableColumn="email">Email</th>
+                            <th pSortableColumn="fecha">Fecha</th>
+                            <th pSortableColumn="estado">Estado</th>
+                            <th>Opciones</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input pInputText type="text" [(ngModel)]="Nombre" (keyup.enter)="loadCliente(null)" placeholder="Nombre" class="p-column-filter">
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-cliente>
+                        <tr>
+                            <td>
+                                <span class="p-column-title">Nombre</span>
+                                {{cliente.nombre}}
+                            </td>
+                             <td>
+                                <span class="p-column-title">DPI</span>
+                                {{cliente.nit}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Dirección</span>
+                                {{cliente.direccion}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Telefono</span>
+                                {{cliente.telefono}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Email</span>
+                                {{cliente.email}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Fecha</span>
+                                {{cliente.fechaCreacion | date:'dd-MM-yyyy'}}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Estado</span>
+                                <i *ngIf="cliente.estado" class="pi pi-check"></i>
+                                <!-- {{cliente.estado}} -->
+                            </td>
+                            <td>
+                                <div class="flex">
+                                    <button pButton pRipple icon="pi pi-pencil" *ngIf="cliente.estado" class="p-button-rounded p-button-success mr-2" (click)="nuevoCliente(cliente)"></button>
+                                    <button pButton pRipple icon="pi pi-wrench" *ngIf="cliente.estado" class="p-button-rounded p-button-secondary mr-2" (click)="nuevoServicio(cliente)"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+        <p-dialog [(visible)]="diag_cliente" [style]="{width: '500px'}" header="{{title}}" [modal]="true" class="p-fluid" (onHide)="cerrarDialogo($event)">
+            <div *ngIf="cliente">
+                <cliente-edit (outForm)="cerrarDialogo($event)" [cliente]="cliente"></cliente-edit>
+            </div>
+        </p-dialog>
+        <p-dialog [(visible)]="diag_servicio" [style]="{width: '500px'}" header="{{title}}" [modal]="true" class="p-fluid" (onHide)="cerrarDialogo($event)">
+            <div *ngIf="cliente">
+                <cliente-servicio (outForm)="cerrarDialogo($event)" [cliente]="cliente"></cliente-servicio>
+            </div>
+        </p-dialog>
+    </div>
+</div>
+

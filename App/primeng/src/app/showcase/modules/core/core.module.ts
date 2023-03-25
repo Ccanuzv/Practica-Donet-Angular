@@ -32,17 +32,29 @@ import { EmpleadoEditComponent } from './Componentes/empleados/empleado-edit/emp
 import { EmpleadoListComponent } from './Componentes/empleados/empleado-list/empleado-list.component';
 import { PalondrimoComponent } from './Componentes/palondrimo/palondrimo.component';
 import { GlobalComponenteModule } from '../global-componente/global-componente.module';
-
+import { ClienteComponent } from './Componentes/cliente/cliente.component';
+import { ServicioComponent } from './Componentes/servicio/servicio.component';
+import { ClienteEditComponent } from './Componentes/cliente/cliente-edit/cliente-edit.component';
+import { ClienteListComponent } from './Componentes/cliente/cliente-list/cliente-list.component';
+import { ClienteServicioComponent } from './Componentes/cliente/cliente-servicio/cliente-servicio.component';
+import { ServicioListComponent } from './Componentes/servicio/servicio-list/servicio-list.component';
+import { ServicioEditComponent } from './Componentes/servicio/servicio-edit/servicio-edit.component';
+import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 
 @NgModule({
   declarations: [
-    
-  
     EmpleadosComponent,
-             EmpleadoManagerComponent,
-             EmpleadoEditComponent,
-             EmpleadoListComponent,
-             PalondrimoComponent
+    EmpleadoManagerComponent,
+    EmpleadoListComponent,
+    PalondrimoComponent,
+    ClienteComponent,
+    ServicioComponent,
+    ClienteEditComponent,
+    ClienteListComponent,
+    ClienteServicioComponent,
+    ServicioListComponent,
+    ServicioEditComponent,
+    EmpleadoEditComponent,
   ],
   imports: [
     CommonModule,
@@ -69,7 +81,8 @@ import { GlobalComponenteModule } from '../global-componente/global-componente.m
     InputMaskModule,
     PasswordModule,
     ChipModule,
-    GlobalComponenteModule
+    GlobalComponenteModule,
+    DataViewModule,
   ],
   bootstrap: [AppComponent]
 })
